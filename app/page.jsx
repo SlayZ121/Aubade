@@ -11,31 +11,35 @@ import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-base-200 flex flex-col items-center px-4 pt-28 pb-10 space-y-24">
+    <main className="min-h-screen bg-base-300 flex flex-col items-center px-4 pt-28 pb-10 space-y-24">
       {/* Hero */}
-      <section className="max-w-3xl text-center p-8 rounded-xl bg-base-100 border border-base-300 shadow-md space-y-6">
-        <h1 className="text-4xl font-extrabold text-primary tracking-tight">
-          welcome to aubade.
+      <section className="w-full px-4 text-center pt-32 pb-24 relative overflow-hidden">
+        {/* Floating decorative icons with different colors */}
+
+        <h1 className="text-5xl sm:text-6xl font-extrabold text-primary tracking-tight leading-tight">
+          welcome to Aubade.
         </h1>
 
-        <p className="text-base text-base-content/70 leading-relaxed">
+        <p className="mt-6 text-lg sm:text-xl text-base-content/70 max-w-2xl mx-auto leading-relaxed">
           a soft place to hold your quietest thoughts.
           <br className="hidden sm:block" />
           write to remember. write to release. write to be.
         </p>
 
-        <div className="flex justify-center gap-6 mt-6">
-          <IconBubble icon={<PenLine className="w-5 h-5" />} />
-          <IconBubble icon={<BookHeart className="w-5 h-5" />} />
-          <IconBubble icon={<Heart className="w-5 h-5" />} />
+        <div className="flex justify-center gap-4 mt-10">
+          <Link
+            href="/login"
+            className="btn btn-primary btn-lg rounded-full shadow-md"
+          >
+            start writing
+          </Link>
+          <Link
+            href="/about"
+            className="btn btn-outline btn-lg rounded-full shadow-sm"
+          >
+            learn more
+          </Link>
         </div>
-
-        <Link
-          href="/login"
-          className="btn btn-primary btn-wide rounded-full mt-6 shadow-sm"
-        >
-          start writing
-        </Link>
       </section>
 
       {/* Features */}
@@ -87,14 +91,6 @@ function FeatureCard({ icon, title, desc }) {
       <div className="p-3 rounded-full bg-base-300 text-primary">{icon}</div>
       <h3 className="font-semibold text-base-content">{title}</h3>
       <p className="text-sm text-base-content/70">{desc}</p>
-    </div>
-  );
-}
-
-function IconBubble({ icon }) {
-  return (
-    <div className="p-3 rounded-full bg-base-300 text-primary shadow-sm">
-      {icon}
     </div>
   );
 }
