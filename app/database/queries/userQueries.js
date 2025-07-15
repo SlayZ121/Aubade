@@ -1,10 +1,9 @@
 import bcrypt from "bcryptjs";
 import Users from "@/app/database/models/user.model";
 import { connect } from "@/app/database/mongodb/mongoose";
-// 👈 this ensures DB is connected before any query
 
-export async function createUser({ email, password, name = "" }) {
-  await connect(); // ensure DB is connected
+export async function createUser({ email, password, name }) {
+  await connect();
 
   const existingUser = await Users.findOne({ email });
   if (existingUser) throw new Error("Email is already in use");
@@ -21,12 +20,12 @@ export async function createUser({ email, password, name = "" }) {
 }
 
 export async function findUserByEmail(email) {
-  await connect(); // ensure DB is connected
+  await connect();
   return await Users.findOne({ email });
 }
 
 export async function loginUser({ email, password }) {
-  await connect(); 
+  await connect();
 
   const user = await findUserByEmail(email);
   if (!user) throw new Error("User not found");

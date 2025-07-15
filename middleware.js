@@ -2,7 +2,11 @@ import { NextResponse } from "next/server";
 import { verifyToken } from "@/app/utils/jwt";
 
 const publicRoutes = ["/", "/about", "/login", "/signup"];
-const openApiRoutes = ["/api/auth/login", "/api/auth/signup"];
+const openApiRoutes = [
+  "/api/auth/login",
+  "/api/auth/signup",
+  "/api/auth/check",
+];
 const openApiPrefix = "/api/website";
 
 export async function middleware(request) {

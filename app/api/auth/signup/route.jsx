@@ -36,7 +36,7 @@ export async function POST(req) {
     const token = await generateToken({ id: user._id, email: user.email });
 
     const response = NextResponse.json(
-      { code: 1, message: "User created successfully.", data: user },
+      { code: 1, message: "User created successfully.", data: user, token },
       { status: 201 }
     );
 

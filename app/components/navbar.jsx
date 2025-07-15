@@ -1,9 +1,13 @@
 "use client";
-import { LogIn, BookHeart, Settings, User } from "lucide-react";
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
+import { BookOpen, Book, Settings, User, LogOut } from "lucide-react";
+import { useAuthStore } from "@/app/store/useAuthStore"; // adjust path if needed
 
 export default function Navbar() {
+  const { logout, authUser } = useAuthStore();
+
+  console.log("🔐 Navbar authUser:", authUser);
+
   return (
     <header className="bg-base-100 border-b border-base-300 fixed w-full top-0 z-40 backdrop-blur-lg bg-base-100/80">
       <div className="container mx-auto px-4 h-16">
@@ -22,6 +26,14 @@ export default function Navbar() {
           {/* Right-side Buttons */}
           <div className="flex items-center gap-5">
             <Link
+              href="/diary"
+              className="flex items-center gap-2 text-sm text-base-content/80 hover:text-primary transition-colors"
+            >
+              <Book className="size-5" />
+              <span className="hidden sm:inline">Diary</span>
+            </Link>
+
+            <Link
               href="/settings"
               className="flex items-center gap-2 text-sm text-base-content/80 hover:text-primary transition-colors"
             >
@@ -29,16 +41,25 @@ export default function Navbar() {
               <span className="hidden sm:inline">Settings</span>
             </Link>
 
-            <Link
-              href="/profile"
-              className="flex items-center gap-2 text-sm text-base-content/80 hover:text-primary transition-colors"
-            >
-              <User className="size-5" />
-              <span className="hidden sm:inline">Profile</span>
-            </Link>
-            <button className="flex gap-2 items-center">
-              <span className="hidden sm:inline">Logout</span>
-            </button>
+            {authUser && (
+              <>
+                <Link
+                  href="/profile"
+                  className="flex items-center gap-2 text-sm text-base-content/80 hover:text-primary transition-colors"
+                >
+                  <User className="size-5" />
+                  <span className="hidden sm:inline">Profile</span>
+                </Link>
+
+                <button
+                  onClick={logout}
+                  className="flex items-center gap-2 text-sm text-base-content/80 hover:text-error transition-colors"
+                >
+                  <LogOut className="size-5" />
+                  <span className="hidden sm:inline">Logout</span>
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>

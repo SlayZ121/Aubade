@@ -8,8 +8,12 @@ import {
   Wand2,
 } from "lucide-react";
 import Link from "next/link";
+import { useAuthStore } from "../store/useAuthStore";
 
 export default function HomePage() {
+  const { authUser } = useAuthStore();
+  console.log(authUser);
+
   return (
     <main className="min-h-screen bg-base-300 flex flex-col items-center px-4 pt-28 pb-10 space-y-24">
       {/* Hero */}

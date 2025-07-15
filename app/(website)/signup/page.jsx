@@ -20,7 +20,7 @@ import AuthImagePattern from "../../components/AuthImagePattern"; // adjust path
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     email: "",
     password: "",
   });
@@ -29,7 +29,7 @@ const SignUpPage = () => {
   const { signup, isSigningUp } = useAuthStore();
 
   const validateForm = () => {
-    if (!formData.fullName.trim()) {
+    if (!formData.name.trim()) {
       toast.error("Full name is required");
       return false;
     }
@@ -91,9 +91,9 @@ const SignUpPage = () => {
                   type="text"
                   className="input input-bordered w-full pl-10"
                   placeholder="John Doe"
-                  value={formData.fullName}
+                  value={formData.name}
                   onChange={(e) =>
-                    setFormData({ ...formData, fullName: e.target.value })
+                    setFormData({ ...formData, name: e.target.value })
                   }
                 />
               </div>
